@@ -67,7 +67,7 @@ void lcd_write(u8 dc, u8 *data, int n)
 	HAL_GPIO_WritePin(TFT_A0_GPIO_Port,TFT_A0_Pin,(GPIO_PinState)dc);
 	HAL_GPIO_WritePin(SPI2_CS_GPIO_Port,SPI2_CS_Pin,GPIO_PIN_RESET);
 	HAL_SPI_Transmit(&hspi1,data,n,50000);
-	//HAL_SPI_Transmit_DMA(&hspi2,data,n);
+	//HAL_SPI_Transmit_DMA(&hspi1,data,n);
 	HAL_GPIO_WritePin(SPI2_CS_GPIO_Port,SPI2_CS_Pin,GPIO_PIN_SET);
 }
 
@@ -84,7 +84,7 @@ void lcd_show()
 {
 	u8 gram=0x2c;
 	lcd_write(0,&gram,1); 
-	lcd_write(1,(u8*)&sbuf,WxH);
+	lcd_write(1,(u8*)&sbuf,WxH*2);
 }
 
 void set_color(u16 c)
@@ -130,6 +130,7 @@ void lcd_init()
 		}
 	}
 	lcd_clear();
+	lcd_show();
 	HAL_Delay(100);
 	HAL_GPIO_WritePin(TFT_BL_PORT, TFT_BL_PIN, GPIO_PIN_RESET);
 

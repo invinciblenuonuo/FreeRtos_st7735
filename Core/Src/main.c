@@ -109,7 +109,11 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		
+//		i++;
+//		lcd_num(i,2 ,2);
+//		lcd_num(i,2 ,140);
+//		lcd_show();
+
   }
   /* USER CODE END 3 */
 }

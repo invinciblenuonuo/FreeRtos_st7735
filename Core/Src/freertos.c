@@ -25,7 +25,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "lvgl_app.h"
 
 /* USER CODE END Includes */
 
@@ -109,7 +108,7 @@ void MX_FREERTOS_Init(void) {
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* definition and creation of LED */
-  osThreadDef(LED, LED_FLASH_TASK, osPriorityNormal, 0, 64);
+  osThreadDef(LED, LED_FLASH_TASK, osPriorityNormal, 0, 32);
   LEDHandle = osThreadCreate(osThread(LED), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */

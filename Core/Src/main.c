@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
+#include "dma.h"
 #include "spi.h"
 #include "gpio.h"
 
@@ -56,7 +57,7 @@ void MX_FREERTOS_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-u16 test[9] = {0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,0xffff,0xffff};
+int i;
 /* USER CODE END 0 */
 
 /**
@@ -88,9 +89,11 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_SPI1_Init();
+  MX_DMA_Init();
   /* USER CODE BEGIN 2 */
 		lcd_init();
-		lcd_color_fill_int(20,20,23,23,0xffff);
+		lcd_num(1 ,2 ,2);
+		//lcd_color_fill_int(20,20,23,23,0xffff);
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */

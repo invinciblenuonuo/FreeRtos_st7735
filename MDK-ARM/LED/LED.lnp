@@ -2,6 +2,7 @@
 "led\main.o"
 "led\gpio.o"
 "led\freertos.o"
+"led\dma.o"
 "led\spi.o"
 "led\stm32f1xx_it.o"
 "led\stm32f1xx_hal_msp.o"

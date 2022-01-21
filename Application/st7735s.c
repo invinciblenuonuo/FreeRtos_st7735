@@ -84,7 +84,7 @@ void lcd_show()
 {
 	u8 gram=0x2c;
 	lcd_write(0,&gram,1); 
-	lcd_write(1,(u8*)&sbuf,WxH*2);
+	lcd_write(1,(u8*)&sbuf,WxH);
 }
 
 void set_color(u16 c)
@@ -171,6 +171,11 @@ void lcd_num(long n,u16 x,u16 y)
 	sprintf(buf,"%ld",n);
 	lcd_str(buf,x,y);
 }
+
+void lcd_printf()
+{
+}
+
 
 void lcd_box(u8 x,u8 y,u8 w,u8 h)
 {

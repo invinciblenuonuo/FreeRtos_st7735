@@ -44,5 +44,6 @@ led\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 led\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
 led\main.o: ..\Application\st7735s.h
 led\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
+led\main.o: ../Core/Inc/dma.h
 led\main.o: ../Core/Inc/spi.h
 led\main.o: ../Core/Inc/gpio.h

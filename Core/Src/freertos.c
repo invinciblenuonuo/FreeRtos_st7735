@@ -25,6 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "LCD_task.h"
 
 /* USER CODE END Includes */
 
@@ -49,9 +50,10 @@
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
 osThreadId LEDHandle;
-osThreadId LVGL_FLUSHHandle;
+
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
+osThreadId LCD_FLUSHHandle;
 
 /* USER CODE END FunctionPrototypes */
 
@@ -104,15 +106,22 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 10);
+  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* definition and creation of LED */
-  osThreadDef(LED, LED_FLASH_TASK, osPriorityNormal, 0, 32);
+  osThreadDef(LED, LED_FLASH_TASK, osPriorityNormal, 0, 128);
   LEDHandle = osThreadCreate(osThread(LED), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
+	 osThreadDef( LCD_FLUSH ,
+								LCD_FLUSH_Task, 
+	              osPriorityAboveNormal, 
+								0, 
+	              256);
+  LCD_FLUSHHandle = osThreadCreate(osThread(LCD_FLUSH), NULL);
+
 //	 osThreadDef(LVGL_FLUSH, LVGL_Fresh_Task, osPriorityNormal, 0, 128);
 //	 LVGL_FLUSHHandle = osThreadCreate(osThread(LVGL_FLUSH), NULL);
 

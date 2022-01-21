@@ -44,3 +44,4 @@ led\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 led\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
 led\freertos.o: ..\Application\st7735s.h
 led\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
+led\freertos.o: ..\Application\src\LCD_task.h

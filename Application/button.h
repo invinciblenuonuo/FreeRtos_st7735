@@ -5,6 +5,10 @@
 #include "main.h"
 #include "FreeRTOS.h"
 #include "cmsis_os.h"
+#include "led.h"
+
+extern xSemaphoreHandle   KEY_1_Handle;
+extern xSemaphoreHandle   KEY_2_Handle;
 
 
 /**

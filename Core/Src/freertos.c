@@ -26,6 +26,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "LCD_task.h"
+#include "button.h"
 
 /* USER CODE END Includes */
 
@@ -54,7 +55,7 @@ osThreadId LEDHandle;
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
 osThreadId LCD_FLUSHHandle;
-
+osThreadId Button_TaskHHandle;
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
@@ -85,7 +86,9 @@ void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackTy
   */
 void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
-
+	vSemaphoreCreateBinary( KEY_1_Handle);
+	vSemaphoreCreateBinary( KEY_2_Handle);
+	
   /* USER CODE END Init */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -110,7 +113,7 @@ void MX_FREERTOS_Init(void) {
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* definition and creation of LED */
-  osThreadDef(LED, LED_FLASH_TASK, osPriorityNormal, 0, 128);
+  osThreadDef(LED, LED_FLASH_TASK, osPriorityNormal, 0, 64);
   LEDHandle = osThreadCreate(osThread(LED), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -121,6 +124,15 @@ void MX_FREERTOS_Init(void) {
 								0, 
 	              256);
   LCD_FLUSHHandle = osThreadCreate(osThread(LCD_FLUSH), NULL);
+	
+//	xTaskCreate( Button_detect_TASK , "handle_key",128 ,NULL, 2 ,NULL);
+	 osThreadDef( Button_Task ,
+								Button_detect_TASK, 
+	              osPriorityAboveNormal, 
+								0, 
+	              128);
+  Button_TaskHHandle = osThreadCreate(osThread(Button_Task), NULL);
+
 
 //	 osThreadDef(LVGL_FLUSH, LVGL_Fresh_Task, osPriorityNormal, 0, 128);
 //	 LVGL_FLUSHHandle = osThreadCreate(osThread(LVGL_FLUSH), NULL);

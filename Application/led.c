@@ -10,10 +10,8 @@ void LED_FLASH_TASK(void const * argument)
 
 	  while(1)
 		{
-			i++;
-			lcd_num(i ,2 ,2);
-			//HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_5);
-			vTaskDelay(100);
+			HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_5);
+			vTaskDelay(500);
 		}
 }
 

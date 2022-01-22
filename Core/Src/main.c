@@ -92,7 +92,6 @@ int main(void)
   MX_DMA_Init();
   /* USER CODE BEGIN 2 */
 		lcd_init();
-		lcd_num(1 ,2 ,2);
 		//lcd_color_fill_int(20,20,23,23,0xffff);
   /* USER CODE END 2 */
 
@@ -109,10 +108,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//		i++;
-//		lcd_num(i,2 ,2);
-//		lcd_num(i,2 ,140);
-//		lcd_show();
 
   }
   /* USER CODE END 3 */

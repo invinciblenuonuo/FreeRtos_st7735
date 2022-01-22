@@ -108,6 +108,7 @@ void lcd_clear()
 {
 	lcd_fill(0);
 }
+
 void lcd_init()
 {
 	HAL_GPIO_WritePin(SPI2_CS_GPIO_Port,SPI2_CS_Pin,GPIO_PIN_SET);
@@ -129,6 +130,7 @@ void lcd_init()
 			HAL_Delay(cmd->delay);
 		}
 	}
+	set_color(0xffff);
 	lcd_clear();
 	lcd_show();
 	HAL_Delay(100);
@@ -145,11 +147,11 @@ void lcd_char(char cc,u16 x,u16 y)
 		{
 			if(font[cc*16+r]&(1<<(7-c)))
 			{
-				set_color(0x000f);
+				set_color(0xffff);
 			}
 			else
 			{
-				set_color(0);
+				set_color(0x000f);
 			}
 			lcd_point(x+c,y+r);
 		}
@@ -212,15 +214,14 @@ void lcd_color_fill(u8 x1,u8 y1,u8 x2,u8 y2,u16 *color_p)
 
 void lcd_color_fill_int(u8 x1,u8 y1,u8 x2,u8 y2,u16 color_p)
 {
-	for(u8 i=y1;i<y1+y2;i++)
+	for(u8 i=y1;i<y2;i++)
 	{
-		for(u8 j=x1;j<x1+x2;j++)
+		for(u8 j=x1;j<x2;j++)
 		{
 			set_color(color_p);
 			lcd_point(i,j);
 		}
 	}
-	lcd_show();
 }
 
 
